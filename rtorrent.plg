@@ -33,12 +33,10 @@
 
 <FILE Name="&plugin;/Packages/libtorrent-0.13.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
 <URL>&repo;/Packages/libtorrent-0.13.6-x86_64-prl.tgz</URL>
-<MD5>765F84CBE07E271006DCFBE447009EBE</MD5>
 </FILE>
 
 <FILE Name="&plugin;/Packages/rtorrent-0.9.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
 <URL>&repo;/Packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
-<MD5>51AE688C8AE98A56BE4D2FFA584E1661</MD5>
 </FILE>
 
 <FILE Name="&plugin;/conf/rtorrent.rc">
