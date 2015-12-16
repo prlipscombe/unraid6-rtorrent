@@ -51,20 +51,6 @@ if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
 
-#Removing locked rtorrent from session in case of bad reboot
-# rm sessionsdirectoryifconfigured/rtorrent.lock
-
-# Mount rTorrent disk
-mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
-mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
-
-# Start rTorrent
-stty stop undef
-stty start undef
-screen -T linux -dmUS rtorrent rtorrent -n -o import=&plugin;/conf/rtorrent.rc
-#Create symbolic link for .screen
-ln -s /.screen /root/
-
 </INLINE>
 </FILE>
 
