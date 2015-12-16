@@ -2,7 +2,7 @@
 # session = /mnt/disk5/torrent-metadata
 directory = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f/torrents
 session = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f/torrent-metadata
-upload_rate = 50
+upload_rate = 5
 check_hash = no
 # hash_interval = 10
 # hash_max_tries = 1

@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16b">
+	<!ENTITY version   "2015.12.16c">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
@@ -59,7 +59,9 @@ if [ ! -d &emhttp; ]; then
 fi
 tar -zxf &plugin;/&name;-&version;.tar.gz --strip=1 -C &emhttp;/
 find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -delete
-chmod +0770 /usr/local/emhttp/plugins/&name;/scripts/*
+
+# Fix permissions of executable files
+chmod +x /usr/local/emhttp/plugins/&name;/scripts/* /usr/local/emhttp/plugins/&name;/event/*
 
 </INLINE>
 </FILE>
