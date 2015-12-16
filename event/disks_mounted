@@ -1,5 +1,5 @@
 #!/bin/bash
 # source /boot/config/plugins/deluged/deluged.cfg
 # if [ $SERVICE = enable ]; then
-/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/start
+/boot/config/plugins/RTorrent/scripts/start
 # fi
