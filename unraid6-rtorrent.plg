@@ -58,9 +58,8 @@ if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
 tar -zxf &plugin;/&name;-&version;.tar.gz --strip=1 -C &emhttp;/
-
+find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -delete
 chmod +0770 /usr/local/emhttp/plugins/&name;/scripts/*
-cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
 
 </INLINE>
 </FILE>
