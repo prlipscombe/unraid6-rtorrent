@@ -2,10 +2,10 @@
 
 <!-- PLUGIN DEFINITIONS -->
 <!DOCTYPE PLUGIN [
-	<!ENTITY name      "RTorrent">
+	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16">
-	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/unraid6-rtorrent/master">
+	<!ENTITY version   "2015.12.16a">
+	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
 	<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
@@ -57,6 +57,11 @@
 if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
+tar -zxf &plugin;/&name;-&version;.tar.gz --strip=1 -C &emhttp;/
+find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -delete
+chmod +0770 /usr/local/emhttp/plugins/&name;/scripts/*
+cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
+
 </INLINE>
 </FILE>
 

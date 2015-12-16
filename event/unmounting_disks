@@ -1,2 +1,2 @@
 #!/bin/bash
-/boot/config/plugins/RTorrent/scripts/stop
+/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/stop
