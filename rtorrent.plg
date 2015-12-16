@@ -50,7 +50,6 @@
 if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
-
 </INLINE>
 </FILE>
 
@@ -64,11 +63,9 @@ echo "+=========================================================================
 # Remove plugin related files
 rm -rf /usr/local/emhttp/plugins/&name;
 rm -rf &plugin;/Packages
-rm -rf &plugin;/conf
 
 echo ""
 echo "RTorrent removed???"
-
 </INLINE>
 </FILE>
 </PLUGIN>
