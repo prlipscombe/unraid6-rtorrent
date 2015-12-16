@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16a">
+	<!ENTITY version   "2015.12.16b">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
@@ -40,8 +40,8 @@
 <URL>&repo;/Packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
 </FILE>
 
-<FILE Name="&plugin;/conf/rtorrent.rc">
-<URL>&repo;/conf/rtorrent.rc</URL>
+<FILE Name="&plugin;/config/rtorrent.rc">
+<URL>&repo;/config/rtorrent.rc</URL>
 </FILE>
 
 
