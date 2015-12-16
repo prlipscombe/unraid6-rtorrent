@@ -58,7 +58,7 @@ if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
 tar -zxf &plugin;/&name;-&version;.tar.gz --strip=1 -C &emhttp;/
-find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -delete
+
 chmod +0770 /usr/local/emhttp/plugins/&name;/scripts/*
 cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
 
@@ -75,10 +75,12 @@ echo "+=========================================================================
 # Remove plugin related files
 rm -rf /usr/local/emhttp/plugins/&name;
 rm -rf &plugin;/Packages
-rm -rf &plugin;/conf
+rm -rf &plugin;/config
+rm -rf &plugin;/event
+rm -rf &plugin;/scripts
 
 echo ""
-echo "RTorrent removed???"
+echo "RTorrent plugin removed..."
 </INLINE>
 </FILE>
 </PLUGIN>
