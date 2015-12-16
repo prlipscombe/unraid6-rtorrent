@@ -4,24 +4,25 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "RTorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16.5">
+	<!ENTITY version   "2015.12.16.6">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/unraid6-rtorrent/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
 	<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
 
-<PLUGIN  name="&name;"
-		 author="&author;"
-		 version="&version;"
-		 pluginURL="&pluginURL;"
-         emhttp="&emhttp;"
+<PLUGIN	name="&name;"
+		author="&author;"
+		version="&version;"
+		pluginURL="&pluginURL;"
+		emhttp="&emhttp;"
 >
 
 
 <CHANGES>
 ###2015.12.16
 - Inital release.
+  Just a file dump specific for my setup.
 </CHANGES>
 
 
@@ -63,6 +64,7 @@ echo "+=========================================================================
 # Remove plugin related files
 rm -rf /usr/local/emhttp/plugins/&name;
 rm -rf &plugin;/Packages
+rm -rf &plugin;/conf
 
 echo ""
 echo "RTorrent removed???"
