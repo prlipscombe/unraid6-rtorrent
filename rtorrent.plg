@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "RTorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16.3">
+	<!ENTITY version   "2015.12.16.4">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/unraid6-rtorrent/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
@@ -50,6 +50,21 @@
 if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
+
+#Removing locked rtorrent from session in case of bad reboot
+# rm sessionsdirectoryifconfigured/rtorrent.lock
+
+# Mount rTorrent disk
+mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
+mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
+
+# Start rTorrent
+stty stop undef
+stty start undef
+screen -T linux -dmUS rtorrent rtorrent -n -o import=/boot/custom/etc/rtorrent.rc
+#Create symbolic link for .screen
+ln -s /.screen /root/
+
 </INLINE>
 </FILE>
 
