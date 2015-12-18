@@ -4,9 +4,10 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.16c">
+	<!ENTITY version   "2015.12.18">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
+	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unradi6/master">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
 	<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
@@ -23,6 +24,9 @@
 ###2015.12.16
 - Inital release.
   Just a file dump specific for my setup.
+###2015.12.18
+- Seperated Packages into their own repository.
+  Just a file dump specific for my setup.
 </CHANGES>
 
 
@@ -32,12 +36,12 @@
 </INLINE>
 </FILE>
 
-<FILE Name="&plugin;/Packages/libtorrent-0.13.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
-<URL>&repo;/Packages/libtorrent-0.13.6-x86_64-prl.tgz</URL>
+<FILE Name="&plugin;/packages/libtorrent-0.13.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
+<URL>&pkgURL;/packages/libtorrent-0.13.6-x86_64-prl.tgz</URL>
 </FILE>
 
-<FILE Name="&plugin;/Packages/rtorrent-0.9.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
-<URL>&repo;/Packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
+<FILE Name="&plugin;/packages/rtorrent-0.9.6-x86_64-prl.tgz" Run="/sbin/upgradepkg --install-new">
+<URL>&pkgURL;/packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
 </FILE>
 
 <FILE Name="&plugin;/config/rtorrent.rc">
@@ -57,6 +61,7 @@
 if [ ! -d &emhttp; ]; then
 	mkdir -p &emhttp;
 fi
+
 tar -zxf &plugin;/&name;-&version;.tar.gz --strip=1 -C &emhttp;/
 find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -delete
 
@@ -75,7 +80,7 @@ echo "| Uninstalling RTorrent"
 echo "+=============================================================================="
 # Remove plugin related files
 rm -rf /usr/local/emhttp/plugins/&name;
-rm -rf &plugin;/Packages
+rm -rf &plugin;/packages
 rm -rf &plugin;/config
 rm -rf &plugin;/event
 rm -rf &plugin;/scripts
