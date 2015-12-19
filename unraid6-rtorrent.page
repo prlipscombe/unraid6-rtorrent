@@ -17,7 +17,11 @@ $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's
 
 <form markdown="1" name="rtorrent_settings" method="POST" action="/update.php" target="progressFrame">
 
-Enable Deluged <?=$rtorrent_version;?>:
+Enable rTorrent <?=$rtorrent_version;?>:
+: <select id="SERVICE" name="SERVICE" size="1" onChange="checkRUNNING(this.form);">
+		<?=mk_option($deluged_service, "disable", "No");?>
+		<?=mk_option($deluged_service, "enable", "Yes");?>
+	</select>
 
 &nbsp;
 :	<input id="btnApply" type="submit" value="Apply" style="margin-bottom:8px" onClick="verifyDATA(this.form);"><button type="button" style="margin-bottom:20px" onClick="done();">Done</button>
