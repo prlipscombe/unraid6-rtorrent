@@ -7,7 +7,7 @@
 	<!ENTITY version   "2015.12.18">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
-	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unradi6/master">
+	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
 	<!ENTITY plugin    "/boot/config/plugins/&name;">
 	<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
