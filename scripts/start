@@ -1,4 +1,2 @@
 #!/bin/sh
 screen -T linux -dmUS rtorrent rtorrent -n -o import=/boot/config/plugins/unraid6-rtorrent/config/rtorrent.rc
-#Create symbolic link for .screen ?
-#ln -s /.screen /root/

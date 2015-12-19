@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.19c">
+	<!ENTITY version   "2015.12.19d">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -70,6 +70,9 @@ find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -dele
 chmod +x /usr/local/emhttp/plugins/&name;/scripts/* /usr/local/emhttp/plugins/&name;/event/*
 
 cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
+
+# Make sure a symbolic link for .screen exists
+ln -s /.screen /root/
 
 </INLINE>
 </FILE>
