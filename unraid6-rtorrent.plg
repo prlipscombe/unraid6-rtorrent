@@ -69,6 +69,8 @@ find &plugin; -type f -iname "*.tar.gz" ! -iname "&name;-&version;.tar.gz" -dele
 # Fix permissions of executable files
 chmod +x /usr/local/emhttp/plugins/&name;/scripts/* /usr/local/emhttp/plugins/&name;/event/*
 
+cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
+
 </INLINE>
 </FILE>
 
