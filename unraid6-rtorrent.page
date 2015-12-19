@@ -7,6 +7,10 @@ $sName = "rTorrent";
 $errorMsg = "Any Message?";
 $rtorrent_datasize = 0;
 
+$rtorrent_cfg = parse_plugin_cfg("unraid6-rtorrent");
+$rtorrent_service = isset($rtorrent_cfg['SERVICE']) ? $rtorrent_cfg['SERVICE'] : "disable";
+
+
 #$rtorrent_running = trim(shell_exec( "[ -f /proc/`cat /var/run/deluged/deluged.pid 2> /dev/null`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
 
 
@@ -17,16 +21,18 @@ $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's
 ?>
 
 <style type="text/css">
-	.errortext{color: #EF3D47;display: none;}
+	.errortext{color: #EF3D47;display: inline;}
 </style>
 
 
 <form markdown="1" name="rtorrent_settings" method="POST" action="/update.php" target="progressFrame">
+<input type="hidden" name="#file" value="unraid6-rtorrent/unraid6-rtorrent.cfg" />
+<input type="hidden" id="command" name="#command" value="" />
 
 Enable rTorrent <?=$rtorrent_version;?>:
 : <select id="SERVICE" name="SERVICE" size="1" onChange="checkRUNNING(this.form);">
-		<?=mk_option($deluged_service, "disable", "No");?>
-		<?=mk_option($deluged_service, "enable", "Yes");?>
+		<?=mk_option($rtorrent_service, "disable", "No");?>
+		<?=mk_option($rtorrent_service, "enable", "Yes");?>
 	</select>
 
 &nbsp;
@@ -40,5 +46,15 @@ $(function(){
 	showStatus('<?=$sName;?>');
 
 });
+
+function checkRUNNING(form) {
+
+	if (form.SERVICE.value == "enable"){
+		form.command.value = "/usr/local/emhttp/plugins/deluged/scripts/start";
+	} else {
+		form.command.value = "/usr/local/emhttp/plugins/deluged/scripts/stop";
+	 	form.btnApply.disabled = (form.SERVICE.value == "enable");	
+	}
+}
 
 </script>
