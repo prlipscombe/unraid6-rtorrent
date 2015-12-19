@@ -4,7 +4,8 @@ Icon="rTorrent.png"
 ---
 <?php
 $sName = "rTorrent";
-$errorMsg = "";
+$errorMsg = "Any Message?";
+$rtorrent_datasize = 0;
 
 #$rtorrent_running = trim(shell_exec( "[ -f /proc/`cat /var/run/deluged/deluged.pid 2> /dev/null`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
 
@@ -14,6 +15,11 @@ $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's
 
 
 ?>
+
+<style type="text/css">
+	.errortext{color: #EF3D47;display: none;}
+</style>
+
 
 <form markdown="1" name="rtorrent_settings" method="POST" action="/update.php" target="progressFrame">
 
@@ -28,5 +34,11 @@ Enable rTorrent <?=$rtorrent_version;?>:
 </form>
 
 <script type="text/javascript"> 
+$(function(){
+	if ("<?=$errorMsg;?>")
+		$('.errortext').show();	
+	showStatus('<?=$sName;?>');
+
+});
 
 </script>
