@@ -3,7 +3,7 @@ Title="rTorrent"
 Icon="rTorrent.png"
 ---
 <?php
-$sName = "rTorrent";
+$sName = "rtorrent";
 $errorMsg = "Any Message?";
 $rtorrent_datasize = 0;
 
@@ -50,9 +50,9 @@ $(function(){
 function checkRUNNING(form) {
 
 	if (form.SERVICE.value == "enable"){
-		form.command.value = "/usr/local/emhttp/plugins/deluged/scripts/start";
+		form.command.value = "/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/start";
 	} else {
-		form.command.value = "/usr/local/emhttp/plugins/deluged/scripts/stop";
+		form.command.value = "/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/stop";
 	 	form.btnApply.disabled = (form.SERVICE.value == "enable");	
 	}
 }
