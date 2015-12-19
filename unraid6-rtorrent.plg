@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.18">
+	<!ENTITY version   "2015.12.19">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -26,7 +26,8 @@
   Just a file dump specific for my setup.
 ###2015.12.18
 - Seperated Packages into their own repository.
-  Just a file dump specific for my setup.
+###2015.12.19
+- Basic attempts at unRAID settings page
 </CHANGES>
 
 
