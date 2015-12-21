@@ -9,13 +9,14 @@ $rtorrent_datasize = 0;
 
 $rtorrent_cfg = parse_plugin_cfg("unraid6-rtorrent");
 $rtorrent_service = isset($rtorrent_cfg['SERVICE']) ? $rtorrent_cfg['SERVICE'] : "disable";
-$rtorrent_dir = isset($rtorrent_cfg['DATADIR'])     ? $rtorrent_cfg['DATADIR'] : "/usr/local/rtorrent";
+$rtorrent_dir = isset($rtorrent_cfg['DATADIR']) ? $rtorrent_cfg['DATADIR'] : "/usr/local/rtorrent";
+
+$rtorrent_udp = isset($rtorrent_cfg['UDPTRACKERS']) ? $rtorrent_cfg['UDPTRACKERS'] : "enable";
+$rtorrent_dht = isset($rtorrent_cfg['DHT']) ? $rtorrent_cfg['DHT'] : "enable";
+$rtorrent_pexchange = isset($rtorrent_cfg['PEXCHANGE']) ? $rtorrent_cfg['PEXCHANGE'] : "enable";
 
 
-#$rtorrent_running = trim(shell_exec( "[ -f /proc/`cat /var/run/deluged/deluged.pid 2> /dev/null`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
-
-
-#$rtorrent_version = shell_exec( "/usr/bin/deluged -v | grep deluged | sed -e 's/^deluged: //'" );
+$rtorrent_running = trim(shell_exec( "[ -f /proc/`pidof -s -x rtorrent`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
 $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's/^Rakshasa'\''s BitTorrent client version //'" );
 
 
@@ -40,13 +41,16 @@ if (is_dir($rtorrent_dir)) {
 <input type="hidden" name="#file" value="unraid6-rtorrent/unraid6-rtorrent.cfg" />
 <input type="hidden" id="command" name="#command" value="" />
 
-Enable rTorrent <?=$rtorrent_version;?>:
+Enable rTorrent:
 : <select id="SERVICE" name="SERVICE" size="1" onChange="checkRUNNING(this.form);">
 		<?=mk_option($rtorrent_service, "disable", "No");?>
 		<?=mk_option($rtorrent_service, "enable", "Yes");?>
 	</select>
 
-> Enable or Disable rTorrent. This runs in a screen session
+> Enable or Disable rTorrent in a screen session.
+
+rTorrent Version:
+: <?=$rtorrent_version;?>:
 
 Base Directory (<?=$rtorrent_datasize;?>MB):
 : <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
@@ -59,19 +63,32 @@ Upload/Download Speeds:
 > Set the maximum upload and download speeds. Setting these to zero will cause them to be unlimited.
 
 Enable UDP Trackers:
-: Yes/No
+: <select id="UDPTRACKERS" name="UDPTRACKERS" size="1">
+		<?=mk_option($rtorrent_udp, "disable", "No");?>
+		<?=mk_option($rtorrent_udp, "enable", "Yes");?>
+	</select>
 
 > Enable or Disables the use of UDP trackers
 
 Enable DHT:
-: Yes/No
+: <select id="DHT" name="DHT" size="1">
+		<?=mk_option($rtorrent_dht, "disable", "No");?>
+		<?=mk_option($rtorrent_dht, "off", "Do not start");?>
+		<?=mk_option($rtorrent_dht, "auto", "Use as required");?>
+		<?=mk_option($rtorrent_dht, "enable", "Yes");?>
+	</select>
 
-> Enable or Disables the use of the Distributed Hash Table
+> Enable or Disables the use of the Distributed Hash Table using port 6881.
+> May be set to "disable" (completely disable DHT), "off" (do not start DHT),
+> "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
 
 Peer Exchange:
-: Yes/No
+: <select id="PEXCHANGE" name="PEXCHANGE" size="1">
+		<?=mk_option($rtorrent_pexchange, "disable", "No");?>
+		<?=mk_option($rtorrent_pexchange, "enable", "Yes");?>
+	</select>
 
-> Enable or Disables the use of Peer Exchange
+> Enable or Disables the use of Peer Exchange (for torrents not marked private).
 
 
 &nbsp;
@@ -91,12 +108,31 @@ $(function(){
 		$('.errortext').show();	
 	showStatus('<?=$sName;?>');
 
+	checkRUNNING(document.rtorrent_settings);
+		
 	$("#install_dir").fileTreeAttach(null, null, function(folder) {
 		$("#install_dir").val(folder).change();
 	});
 });
 
 function checkRUNNING(form) {
+	if ("<?=$rtorrent_running;?>" == "yes")
+	{
+		form.DATADIR.disabled = "disabled";
+		form.UDPTRACKERS.disabled = "disabled";
+		form.DHT.disabled = "disabled";
+		form.PEXCHANGE.disabled = "disabled";
+
+		form.btnApply.disabled = "disabled";	
+   } 
+   else
+   {
+		form.DATADIR.disabled = "";
+		form.UDPTRACKERS.disabled = "";
+		form.DHT.disabled = "";
+		form.PEXCHANGE.disabled = "";
+
+ 	}
 
 	if (form.SERVICE.value == "enable"){
 		form.command.value = "/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/start";

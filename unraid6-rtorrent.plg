@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.21c">
+	<!ENTITY version   "2015.12.21d">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -79,7 +79,7 @@ cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
 ln -s /.screen /root/
 
 
-# Hardcode my rTorrent disk (will be removed)
+# Hardcode my rTorrent disk mountpoint (will be removed)
 mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
 mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
 
