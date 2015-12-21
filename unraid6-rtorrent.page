@@ -49,6 +49,18 @@ Enable rTorrent <?=$rtorrent_version;?>:
 Base Directory (<?=$rtorrent_datasize;?>MB):
 : <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
 
+Upload/Download Speeds:
+: Some Values
+
+Enable UDP Trackers:
+: Yes/No
+
+Enable DHT:
+: Yes/No
+
+Peer Exchange:
+: Yes/No
+
 
 &nbsp;
 :	<input id="btnApply" type="submit" value="Apply" style="margin-bottom:8px" onClick="verifyDATA(this.form);"><button type="button" style="margin-bottom:20px" onClick="done();">Done</button>
@@ -61,6 +73,9 @@ $(function(){
 	if ("<?=$errorMsg;?>")
 		$('.errortext').show();	
 	showStatus('<?=$sName;?>');
+
+	$("#install_dir").fileTreeAttach(null, null, function(folder) {
+		$("#install_dir").val(folder).change();
 
 });
 
