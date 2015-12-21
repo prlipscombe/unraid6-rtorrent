@@ -46,25 +46,42 @@ Enable rTorrent <?=$rtorrent_version;?>:
 		<?=mk_option($rtorrent_service, "enable", "Yes");?>
 	</select>
 
+> Enable or Disable rTorrent. This runs in a screen session
+
 Base Directory (<?=$rtorrent_datasize;?>MB):
 : <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
+
+> Specify the location where rTorrent will store its data.
 
 Upload/Download Speeds:
 : Some Values
 
+> Set the maximum upload and download speeds. Setting these to zero will cause them to be unlimited.
+
 Enable UDP Trackers:
 : Yes/No
+
+> Enable or Disables the use of UDP trackers
 
 Enable DHT:
 : Yes/No
 
+> Enable or Disables the use of the Distributed Hash Table
+
 Peer Exchange:
 : Yes/No
+
+> Enable or Disables the use of Peer Exchange
 
 
 &nbsp;
 :	<input id="btnApply" type="submit" value="Apply" style="margin-bottom:8px" onClick="verifyDATA(this.form);"><button type="button" style="margin-bottom:20px" onClick="done();">Done</button>
 </form>
+
+> ### Overview
+>
+> This is a very simple implementation of rTorrent into unRAID.
+
 
 <script type="text/javascript" src="/webGui/javascript/jquery.filetree.js"></script>
 
@@ -76,7 +93,7 @@ $(function(){
 
 	$("#install_dir").fileTreeAttach(null, null, function(folder) {
 		$("#install_dir").val(folder).change();
-
+	});
 });
 
 function checkRUNNING(form) {
