@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.19d">
+	<!ENTITY version   "2015.12.21">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -25,9 +25,13 @@
 - Inital release.
   Just a file dump specific for my setup.
 ###2015.12.18
-- Seperated Packages into their own repository.
+- Moved packages into their own repository.
 ###2015.12.19
-- Basic attempts at unRAID settings page
+- Basic attempts at unRAID settings page.
+###2015.12.21
+- Hard Code my rTorrent path.
+- Presenting more rTorrent settings to the GUI (cosmetic only).
+
 </CHANGES>
 
 
@@ -73,6 +77,11 @@ cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
 
 # Make sure a symbolic link for .screen exists
 ln -s /.screen /root/
+
+
+# Hardcode my rTorrent disk (will be removed)
+mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
+mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
 
 </INLINE>
 </FILE>

@@ -9,6 +9,7 @@ $rtorrent_datasize = 0;
 
 $rtorrent_cfg = parse_plugin_cfg("unraid6-rtorrent");
 $rtorrent_service = isset($rtorrent_cfg['SERVICE']) ? $rtorrent_cfg['SERVICE'] : "disable";
+$rtorrent_dir = isset($rtorrent_cfg['DATADIR'])     ? $rtorrent_cfg['DATADIR'] : "/usr/local/rtorrent";
 
 
 #$rtorrent_running = trim(shell_exec( "[ -f /proc/`cat /var/run/deluged/deluged.pid 2> /dev/null`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
@@ -18,10 +19,20 @@ $rtorrent_service = isset($rtorrent_cfg['SERVICE']) ? $rtorrent_cfg['SERVICE'] :
 $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's/^Rakshasa'\''s BitTorrent client version //'" );
 
 
+if (is_dir($rtorrent_dir)) {
+	$rtorrent_datasize = trim(shell_exec("du -shm '$rtorrent_dir' | cut -f1 | sed 's/[^0-9]*//g'"));
+	if (trim(shell_exec("stat -f -c '%T' '$rtorrent_dir'")) == "tmpfs" ){
+		$errorMsg = "Your directory WILL NOT survive reboot!";
+	};
+} else
+	$errorMsg = "Your directory does not exist.";
+
 ?>
 
+<link type="text/css" rel="stylesheet" href="/webGui/styles/jquery.filetree.css">
 <style type="text/css">
-	.errortext{color: #EF3D47;display: inline;}
+	.errortext{color: #EF3D47;display: none;}
+	.fileTree{width:305px;max-height:150px;overflow:scroll;position:absolute;z-index:100;display:none;}
 </style>
 
 
@@ -35,9 +46,15 @@ Enable rTorrent <?=$rtorrent_version;?>:
 		<?=mk_option($rtorrent_service, "enable", "Yes");?>
 	</select>
 
+Base Directory (<?=$rtorrent_datasize;?>MB):
+: <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
+
+
 &nbsp;
 :	<input id="btnApply" type="submit" value="Apply" style="margin-bottom:8px" onClick="verifyDATA(this.form);"><button type="button" style="margin-bottom:20px" onClick="done();">Done</button>
 </form>
+
+<script type="text/javascript" src="/webGui/javascript/jquery.filetree.js"></script>
 
 <script type="text/javascript"> 
 $(function(){
