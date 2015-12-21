@@ -4,7 +4,7 @@ Icon="rTorrent.png"
 ---
 <?php
 $sName = "rtorrent";
-$errorMsg = "Any Message?";
+$errorMsg = "";
 $rtorrent_datasize = 0;
 
 $rtorrent_cfg = parse_plugin_cfg("unraid6-rtorrent");
