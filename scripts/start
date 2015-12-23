@@ -15,13 +15,14 @@ if [ ! "$(pidof rtorrent)" ] ; then
 	fi
 
 
-	
-	# removing locked rtorrent from session in case of bad reboot
+	# update the rtorrent.rc file with the plugin options
+
+
+
+	# removing locked rtorrent from session in case of previous bad reboot
 	if [ -e "$DATADIR/torrent-metadata/rtorrent.lock" ]; then
 		rm -f $DATADIR/torrent-metadata/rtorrent.lock
 	fi
 
 	screen -T linux -dmUS rtorrent rtorrent -n -o import=/boot/config/plugins/unraid6-rtorrent/rtorrent.rc
 fi
-
-

@@ -1,7 +1,7 @@
 # directory = /mnt/disk5/torrents
 # session = /mnt/disk5/torrent-metadata
-directory = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f/torrents
-session = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f/torrent-metadata
+directory = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f//torrents
+session = /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f//torrent-metadata
 upload_rate = 5
 check_hash = no
 # hash_interval = 10
@@ -15,5 +15,5 @@ dht_port = 6881
 peer_exchange = yes
 encryption = allow_incoming,enable_retry,prefer_plaintext
 encoding_list = UTF-8
-# scgi_port = 192.168.1.14:5000
+scgi_port = 192.168.1.14:5000
 # scgi_local = /home/rpc.socket

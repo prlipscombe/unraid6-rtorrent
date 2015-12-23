@@ -1,2 +1,11 @@
 #!/bin/sh
-pkill -2 rtorrent
+# read our configuration
+source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
+
+# no-op if not running
+if [ "$(pidof rtorrent)" ] ; then
+
+	pkill -2 rtorrent
+	sleep 2
+	
+fi

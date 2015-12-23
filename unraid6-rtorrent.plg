@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.23">
+	<!ENTITY version   "2015.12.23a">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -92,7 +92,6 @@ echo "+=========================================================================
 # Remove plugin related files
 rm -rf /usr/local/emhttp/plugins/&name;
 rm -rf &plugin;/packages
-rm -rf &plugin;/config
 rm -rf &plugin;/event
 rm -rf &plugin;/scripts
 
