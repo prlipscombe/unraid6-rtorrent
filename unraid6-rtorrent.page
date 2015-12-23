@@ -47,10 +47,10 @@ Enable rTorrent:
 		<?=mk_option($rtorrent_service, "enable", "Yes");?>
 	</select>
 
-> Enable or Disable rTorrent in a screen session.
+> Enable or disable rTorrent in a screen session.
 
 rTorrent Version:
-: <?=$rtorrent_version;?>:
+: <?=$rtorrent_version;?>
 
 Base Directory (<?=$rtorrent_datasize;?>MB):
 : <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
@@ -68,7 +68,7 @@ Enable UDP Trackers:
 		<?=mk_option($rtorrent_udp, "enable", "Yes");?>
 	</select>
 
-> Enable or Disables the use of UDP trackers
+> Enable or disable the use of UDP trackers.
 
 Enable DHT:
 : <select id="DHT" name="DHT" size="1">
@@ -78,7 +78,7 @@ Enable DHT:
 		<?=mk_option($rtorrent_dht, "enable", "Yes");?>
 	</select>
 
-> Enable or Disables the use of the Distributed Hash Table using port 6881.
+> Enable or disable the use of the Distributed Hash Table on port 6881.
 > May be set to "disable" (completely disable DHT), "off" (do not start DHT),
 > "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
 
@@ -88,7 +88,7 @@ Peer Exchange:
 		<?=mk_option($rtorrent_pexchange, "enable", "Yes");?>
 	</select>
 
-> Enable or Disables the use of Peer Exchange (for torrents not marked private).
+> Enable or disable the use of Peer Exchange (for torrents not marked private).
 
 
 &nbsp;
@@ -97,7 +97,7 @@ Peer Exchange:
 
 > ### Overview
 >
-> This is a very simple implementation of rTorrent into unRAID.
+> This is a very simple implementation of rTorrent under unRAID 6.x.
 
 
 <script type="text/javascript" src="/webGui/javascript/jquery.filetree.js"></script>

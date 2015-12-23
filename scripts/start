@@ -1,2 +1,27 @@
 #!/bin/sh
-screen -T linux -dmUS rtorrent rtorrent -n -o import=/boot/config/plugins/unraid6-rtorrent/config/rtorrent.rc
+# read our configuration
+source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
+
+# no-op if already running
+if [ ! "$(pidof rtorrent)" ] ; then
+
+	# if directory structure doesn't exist, create it
+	if [ ! -e "$DATADIR/torrents" ]; then
+		mkdir -p $DATADIR/torrents
+	fi
+
+	if [ ! -e "$DATADIR/torrent-metadata" ]; then
+		mkdir -p $DATADIR/torrent-metadata
+	fi
+
+
+	
+	# removing locked rtorrent from session in case of bad reboot
+	if [ -e "$DATADIR/torrent-metadata/rtorrent.lock" ]; then
+		rm -f $DATADIR/torrent-metadata/rtorrent.lock
+	fi
+
+	screen -T linux -dmUS rtorrent rtorrent -n -o import=/boot/config/plugins/unraid6-rtorrent/rtorrent.rc
+fi
+
+

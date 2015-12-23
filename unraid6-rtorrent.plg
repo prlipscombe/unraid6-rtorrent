@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.21d">
+	<!ENTITY version   "2015.12.23">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -49,10 +49,6 @@
 <URL>&pkgURL;/packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
 </FILE>
 
-<FILE Name="&plugin;/config/rtorrent.rc">
-<URL>&repo;/config/rtorrent.rc</URL>
-</FILE>
-
 
 <!-- GET FROM GITHUB AS TARBALL -->
 <FILE Name="&plugin;/&name;-&version;.tar.gz">
@@ -76,7 +72,7 @@ chmod +x /usr/local/emhttp/plugins/&name;/scripts/* /usr/local/emhttp/plugins/&n
 cp -nr /usr/local/emhttp/plugins/&name;/&name; /boot/config/plugins
 
 # Make sure a symbolic link for .screen exists
-ln -s /.screen /root/
+ln -sf /.screen /root/
 
 
 # Hardcode my rTorrent disk mountpoint (will be removed)
@@ -104,4 +100,6 @@ echo ""
 echo "RTorrent plugin removed..."
 </INLINE>
 </FILE>
+
+
 </PLUGIN>

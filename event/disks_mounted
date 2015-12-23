@@ -1,5 +1,7 @@
 #!/bin/bash
+# read our configuration
 source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
+
 if [ $SERVICE = "enable" ]; then
-/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/start
+	/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/start
 fi
