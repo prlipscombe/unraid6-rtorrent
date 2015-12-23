@@ -49,6 +49,10 @@
 <URL>&pkgURL;/packages/rtorrent-0.9.6-x86_64-prl.tgz</URL>
 </FILE>
 
+<FILE Name="&plugin;/packages/xmlrpc-c-1.33.16-x86_64-1_slack.txz" Run="/sbin/upgradepkg --install-new">
+<URL>&pkgURL;/packages/xmlrpc-c-1.33.16-x86_64-1_slack.txz</URL>
+</FILE>
+
 
 <!-- GET FROM GITHUB AS TARBALL -->
 <FILE Name="&plugin;/&name;-&version;.tar.gz">
