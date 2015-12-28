@@ -3,6 +3,8 @@ Title="rTorrent"
 Icon="rTorrent.png"
 ---
 <?php
+$ipaddr = $var['IPADDR'];
+
 $sName = "rtorrent";
 $errorMsg = "";
 $rtorrent_datasize = 0;
@@ -14,6 +16,7 @@ $rtorrent_dir = isset($rtorrent_cfg['DATADIR']) ? $rtorrent_cfg['DATADIR'] : "/u
 $rtorrent_udp = isset($rtorrent_cfg['UDPTRACKERS']) ? $rtorrent_cfg['UDPTRACKERS'] : "enable";
 $rtorrent_dht = isset($rtorrent_cfg['DHT']) ? $rtorrent_cfg['DHT'] : "enable";
 $rtorrent_pexchange = isset($rtorrent_cfg['PEXCHANGE']) ? $rtorrent_cfg['PEXCHANGE'] : "enable";
+$rtorrent_xmlrpc = isset($rtorrent_cfg['XMLRPC']) ? $rtorrent_cfg['XMLRPC'] : "disable";
 
 
 $rtorrent_running = trim(shell_exec( "[ -f /proc/`pidof -s -x rtorrent`/exe ] && echo 'yes' || echo 'no' 2> /dev/null" ));
@@ -90,6 +93,14 @@ Peer Exchange:
 
 > Enable or disable the use of Peer Exchange (for torrents not marked private).
 
+Enable XMLRPC:
+: <select id="XMLRPC" name="XMLRPC" size="1">
+		<?=mk_option($rtorrent_xmlrpc, "disable", "No");?>
+		<?=mk_option($rtorrent_xmlrpc, "enable", "Yes");?>
+	</select>
+
+> Enable or disable the XMLRPC service from running on port 5000.
+
 
 &nbsp;
 :	<input id="btnApply" type="submit" value="Apply" style="margin-bottom:8px" onClick="verifyDATA(this.form);"><button type="button" style="margin-bottom:20px" onClick="done();">Done</button>
@@ -122,6 +133,7 @@ function checkRUNNING(form) {
 		form.UDPTRACKERS.disabled = "disabled";
 		form.DHT.disabled = "disabled";
 		form.PEXCHANGE.disabled = "disabled";
+		form.XMLRPC.disabled = "disabled";
 
 		form.btnApply.disabled = "disabled";	
    } 
@@ -131,7 +143,7 @@ function checkRUNNING(form) {
 		form.UDPTRACKERS.disabled = "";
 		form.DHT.disabled = "";
 		form.PEXCHANGE.disabled = "";
-
+		form.XMLRPC.disabled = "";
  	}
 
 	if (form.SERVICE.value == "enable"){

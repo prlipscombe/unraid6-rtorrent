@@ -1,0 +1,50 @@
+#!/bin/sh
+# read our configuration
+source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
+
+case $UDPTRACKERS in
+	enable* )
+		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = yes/' rtorrent.rc ;;
+	* )
+		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = no/' rtorrent.rc ;;
+esac
+
+
+case $DHT in
+	enable* )
+		sed -i 's/^dht =.*/dht = on/' rtorrent.rc ;;
+	* )
+		sed -i 's/^dht =.*/dht = off/' rtorrent.rc ;;
+esac
+
+
+case $PEXCHANGE in
+	enable* )
+		sed 's/^peer_exchange =.*/peer_exchange = yes/' rtorrent.rc ;;
+	* )
+		sed 's/^peer_exchange =.*/peer_exchange = no/' rtorrent.rc ;;
+esac
+
+
+case $XMLRPC in
+	enable* )
+		# remove comment from scgi_port command
+		sed -i '/scgi_port/ s/^# //' rtorrent.rc
+		
+		# should check IP address and port here...
+		;;
+    *)
+		# comment out the scgi_port command
+		sed -i '/^scgi_port/ s/^/# /' rtorrent.rc ;;
+esac
+
+
+
+
+
+
+
+
+
+
+
