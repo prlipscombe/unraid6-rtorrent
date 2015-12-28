@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2015.12.23a">
+	<!ENTITY version   "2015.12.28">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -31,6 +31,11 @@
 ###2015.12.21
 - Hardcode my rTorrent path.
 - Presenting more rTorrent settings to the GUI (cosmetic only).
+###2015.12.23
+- Added XMLRPC.
+###2015.12.28
+- XMRPC set to disable on initial installation.
+- Script to update rtorrent.rc file from unRAID selections.
 
 </CHANGES>
 
