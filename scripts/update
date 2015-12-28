@@ -13,8 +13,12 @@ esac
 case $DHT in
 	enable* )
 		sed -i 's/^dht =.*/dht = on/' rtorrent.rc ;;
-	* )
+	auto* )
+		sed -i 's/^dht =.*/dht = auto/' rtorrent.rc ;;
+	off* )
 		sed -i 's/^dht =.*/dht = off/' rtorrent.rc ;;
+	* )
+		sed -i 's/^dht =.*/dht = disable/' rtorrent.rc ;;
 esac
 
 
@@ -37,14 +41,3 @@ case $XMLRPC in
 		# comment out the scgi_port command
 		sed -i '/^scgi_port/ s/^/# /' rtorrent.rc ;;
 esac
-
-
-
-
-
-
-
-
-
-
-

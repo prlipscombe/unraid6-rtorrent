@@ -16,7 +16,7 @@ if [ ! "$(pidof rtorrent)" ] ; then
 
 
 	# update the rtorrent.rc file with the plugin options
-
+	/usr/local/emhttp/plugins/unraid6-rtorrent/scripts/update
 
 
 	# removing locked rtorrent from session in case of previous bad reboot
