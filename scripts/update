@@ -4,40 +4,40 @@ source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
 
 case $UDPTRACKERS in
 	enable* )
-		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = yes/' rtorrent.rc ;;
+		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = yes/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 	* )
-		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = no/' rtorrent.rc ;;
+		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = no/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 esac
 
 
 case $DHT in
 	enable* )
-		sed -i 's/^dht =.*/dht = on/' rtorrent.rc ;;
+		sed -i 's/^dht =.*/dht = on/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 	auto* )
-		sed -i 's/^dht =.*/dht = auto/' rtorrent.rc ;;
+		sed -i 's/^dht =.*/dht = auto/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 	off* )
-		sed -i 's/^dht =.*/dht = off/' rtorrent.rc ;;
+		sed -i 's/^dht =.*/dht = off/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 	* )
-		sed -i 's/^dht =.*/dht = disable/' rtorrent.rc ;;
+		sed -i 's/^dht =.*/dht = disable/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 esac
 
 
 case $PEXCHANGE in
 	enable* )
-		sed 's/^peer_exchange =.*/peer_exchange = yes/' rtorrent.rc ;;
+		sed 's/^peer_exchange =.*/peer_exchange = yes/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 	* )
-		sed 's/^peer_exchange =.*/peer_exchange = no/' rtorrent.rc ;;
+		sed 's/^peer_exchange =.*/peer_exchange = no/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 esac
 
 
 case $XMLRPC in
 	enable* )
 		# remove comment from scgi_port command
-		sed -i '/scgi_port/ s/^# //' rtorrent.rc
+		sed -i '/scgi_port/ s/^# //' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc
 		
 		# should check IP address and port here...
 		;;
     *)
 		# comment out the scgi_port command
-		sed -i '/^scgi_port/ s/^/# /' rtorrent.rc ;;
+		sed -i '/^scgi_port/ s/^/# /' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
 esac
