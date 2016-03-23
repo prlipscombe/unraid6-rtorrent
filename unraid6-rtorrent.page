@@ -6,7 +6,7 @@ Icon="rTorrent.png"
 function formatBytes($size, $precision = 2)
 {
     $base = log($size, 1024);
-    $suffixes = array('', 'K', 'M', 'G', 'T');   
+    $suffixes = array(' B', ' KB', ' MB', ' GB', ' TB', ' PB', 'EB', 'ZB');   
 
     return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
 }
@@ -32,7 +32,7 @@ $rtorrent_version = shell_exec( "/usr/bin/rtorrent -h | grep version | sed -e 's
 
 
 if (is_dir($rtorrent_dir)) {
-	$rtorrent_datasize = trim(shell_exec("du -shm '$rtorrent_dir' | cut -f1 | sed 's/[^0-9]*//g'"));
+	$rtorrent_datasize = trim(shell_exec("du -shb '$rtorrent_dir' | cut -f1 | sed 's/[^0-9]*//g'"));
 	if (trim(shell_exec("stat -f -c '%T' '$rtorrent_dir'")) == "tmpfs" ){
 		$errorMsg = "Your directory WILL NOT survive reboot!";
 	};
@@ -66,7 +66,7 @@ rTorrent Version:
 Binding to IP Address:
 : <?=$ipaddr;?>
 
-Base Directory (<?=formatBytes($rtorrent_datasize);?>MB):
+Base Directory (<?=formatBytes($rtorrent_datasize);?>):
 : <input id="install_dir" type="text" name="DATADIR" maxlength="60" value="<?=$rtorrent_dir;?>" data-pickcloseonfile="true" data-pickfilter="." data-pickroot="/mnt/" data-pickfolders="true" required="required" title="must be on cache, array or other drive to survive reboot" ><label class="errortext"><?=$errorMsg;?></label>
 
 > Specify the location where rTorrent will store its data.

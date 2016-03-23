@@ -2,6 +2,18 @@
 # read our configuration
 source /boot/config/plugins/unraid6-rtorrent/unraid6-rtorrent.cfg
 
+# read unRaid variables
+source /usr/local/emhttp/state/var.ini
+
+
+# bind to the current unRaid host IP Address in rtorrent.rc
+sed -i 's/^bind =.*/bind = '"$IPADDR"'/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc 
+
+
+# update directories in rtorrent.rc
+
+
+# update UDP trackers in rtorrent.rc
 case $UDPTRACKERS in
 	enable* )
 		sed -i 's/^use_udp_trackers =.*/use_udp_trackers = yes/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
@@ -10,6 +22,7 @@ case $UDPTRACKERS in
 esac
 
 
+# update DHT in rtorrent.rc
 case $DHT in
 	enable* )
 		sed -i 's/^dht =.*/dht = on/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
@@ -22,6 +35,7 @@ case $DHT in
 esac
 
 
+# update Peer Exchange in rtorrent.rc
 case $PEXCHANGE in
 	enable* )
 		sed 's/^peer_exchange =.*/peer_exchange = yes/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc ;;
@@ -30,12 +44,14 @@ case $PEXCHANGE in
 esac
 
 
+# update XMLRPC support in rtorrent.rc
 case $XMLRPC in
 	enable* )
 		# remove comment from scgi_port command
-		sed -i '/scgi_port/ s/^# //' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc
+		sed -i '/scgi_port/ s/^# //' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc 
 		
-		# should check IP address and port here...
+		# bind SCGI to port 5000 of the current unRaid host IP Address
+		sed -i 's/^scgi_port =.*/scgi_port = '"$IPADDR"':5000/' /boot/config/plugins/unraid6-rtorrent/rtorrent.rc 
 		;;
     *)
 		# comment out the scgi_port command
