@@ -90,9 +90,9 @@ cp -nr &emhttp;/&name; /boot/config/plugins
 ln -sf /.screen /root/
 
 
-# Hardcode my rTorrent disk mountpoint (will be removed)
-mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
-mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
+# No longer hardcode my rTorrent disk mountpoint (will be removed)
+# mkdir -p /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
+# mount -U faf6e852-e44c-44a0-a4dd-8f9ba5fa932f /mnt/disk/faf6e852-e44c-44a0-a4dd-8f9ba5fa932f
 
 </INLINE>
 </FILE>
