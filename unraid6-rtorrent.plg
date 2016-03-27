@@ -4,7 +4,7 @@
 <!DOCTYPE PLUGIN [
 	<!ENTITY name      "unraid6-rtorrent">
 	<!ENTITY author    "prlipscombe">
-	<!ENTITY version   "2016.03.23">
+	<!ENTITY version   "2016.03.27">
 	<!ENTITY repo      "https://raw.githubusercontent.com/&author;/&name;/master">
 	<!ENTITY pluginURL "&repo;/&name;.plg">
 	<!ENTITY pkgURL    "https://raw.githubusercontent.com/&author;/unraid6/master">
@@ -21,6 +21,9 @@
 
 
 <CHANGES>
+###2016.03.27
+- Removed my system specific disk mounts from plugin installer
+- Hardcoded rTorrent dounload location to \mnt\cache\rTorrent
 ###2016.03.23
 - rtorrent.rc config file updates to use current unRAID IP Address
 - re-ordered change log, newest first.
